@@ -43,7 +43,12 @@
 ///  4 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 public func rgba_10to12(_ rgba10101010 : [UInt16]) -> [UInt16] {
+    /* Buggy */
     return rgba10101010.map { $0 << 2 | $0 >> 2 }
+}
+
+public func rgba_8to10(_ rgba8888 : [UInt8]) -> [UInt16] {
+    return rgba8888.map { (UInt16($0) << 2 | UInt16($0) >> 6) }
 }
 
 public func rgba_8to12(_ rgba8888 : [UInt8]) -> [UInt16] {
